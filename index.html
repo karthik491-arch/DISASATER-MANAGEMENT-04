@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Response Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet map -->
+    <link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="#home" class="logo">🌍 DRH</a>
+
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#incidents">Live Incidents</a></li>
+            <li><a href="#alerts">Live Alerts</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#volunteers">Volunteers</a></li>
+        </ul>
+
+        <a href="#report" class="nav-button">Report Incident</a>
+    </nav>
+</header>
+
+<div class="announcement">
+    DEMONSTRATION MODE: Emergency updates and verified disaster alerts.
+    Stay informed and prepared.
+</div>
+
+<!-- HOME SECTION -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <span class="tag">DISASTER MANAGEMENT SYSTEM</span>
+
+        <h1>When Disaster Strikes,<br>
+            Every Second Matters.</h1>
+
+        <p>
+            Report emergencies, coordinate relief operations,
+            locate essential resources, and help communities
+            recover through one unified disaster response platform.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#report" class="btn primary">Report an Incident</a>
+            <a href="#incidents" class="btn secondary">View Live Situation</a>
+        </div>
+
+        <div class="features">
+            <span>✓ Verified Operations</span>
+            <span>✓ 24/7 Monitoring</span>
+            <span>✓ Multi-Agency Support</span>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <div class="image-card">
+            <div class="image-icon">🚨</div>
+            <h2>Disaster Response Hub</h2>
+            <p>Centralized Emergency Command & Coordination</p>
+            <div class="status">
+                <span class="pulse"></span>
+                Statewide Response Status Active
+            </div>
+            <h3>Emergency Readiness Level</h3>
+            <div class="progress">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- QUICK ACTIONS -->
+<section class="section">
+    <div class="section-heading">
+        <h2>Active Operations</h2>
+        <p>Choose an operation to get started.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <a href="#report" class="action-card">
+            <div class="card-icon">🚨</div>
+            <h3>Report Incident</h3>
+            <p>Submit immediate emergency details to coordinate relief.</p>
+        </a>
+
+        <a href="#incidents" class="action-card">
+            <div class="card-icon">📍</div>
+            <h3>Track Incidents</h3>
+            <p>Monitor reported incidents and response statuses.</p>
+        </a>
+
+        <a href="#resources" class="action-card">
+            <div class="card-icon">🏥</div>
+            <h3>Find Resources</h3>
+            <p>Locate shelters, medical assistance and essential resources.</p>
+        </a>
+
+        <a href="#volunteers" class="action-card">
+            <div class="card-icon">🤝</div>
+            <h3>Become a Volunteer</h3>
+            <p>Register to support community relief operations.</p>
+        </a>
+
+    </div>
+</section>
+
+<!-- STATISTICS -->
+<section class="stats-section">
+    <div class="section-heading">
+        <h2>Current Operational Situation</h2>
+        <p>Demonstration statistics for the response platform.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h2 id="incidentCount">24</h2>
+            <p>Active Incidents</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>06</h2>
+            <p>Critical Priority</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>1,420</h2>
+            <p>Registered Volunteers</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>85</h2>
+            <p>Relief Centers Open</p>
+        </div>
+    </div>
+</section>
+
+<!-- INCIDENT REPORT -->
+<section class="section" id="report">
+
+    <div class="section-heading">
+        <span class="tag">EMERGENCY REPORTING</span>
+        <h2>Report an Incident</h2>
+        <p>Provide details about the incident for demonstration purposes.</p>
+    </div>
+
+    <form id="incidentForm" class="main-form">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="reporterName"
+                    placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Incident Type</label>
+                <select id="incidentType" required>
+                    <option value="">Select incident</option>
+                    <option>Flood</option>
+                    <option>Cyclone</option>
+                    <option>Earthquake</option>
+                    <option>Fire</option>
+                    <option>Landslide</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="incidentLocation"
+                    placeholder="Enter incident location" required>
+            </div>
+
+            <div class="form-group">
+                <label>Priority</label>
+                <select id="incidentPriority" required>
+                    <option value="">Select priority</option>
+                    <option>Critical</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+            </div>
+
+            <div class="form-group full">
+                <label>Incident Description</label>
+                <textarea id="incidentDescription"
+                    placeholder="Describe the incident..."
+                    required></textarea>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn primary">
+            Submit Incident
+        </button>
+
+        <p id="incidentMessage" class="message"></p>
+
+    </form>
+</section>
+
+<!-- LIVE INCIDENTS -->
+<section class="section gray-section" id="incidents">
+
+    <div class="section-heading">
+        <span class="tag">LIVE MONITORING</span>
+        <h2>Live Incident Situation</h2>
+        <p>View incidents recorded in this demonstration.</p>
+    </div>
+
+    <div class="filter-area">
+        <input type="text" id="searchIncident"
+            placeholder="Search by location or incident...">
+
+        <select id="filterPriority">
+            <option value="All">All Priorities</option>
+            <option>Critical</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+    </div>
+
+    <div id="incidentList" class="incident-list"></div>
+
+</section>
+
+<!-- MAP -->
+<section class="section">
+    <div class="section-heading">
+        <span class="tag">GEOSPATIAL MONITORING</span>
+        <h2>Live Incident Situation Map</h2>
+        <p>Illustrative incident locations. These are not verified live reports.</p>
+    </div>
+
+    <div id="map"></div>
+</section>
+
+<!-- RESPONSE PROCESS -->
+<section class="section">
+    <div class="section-heading">
+        <h2>Four-Step Emergency Response Protocol</h2>
+        <p>From initial report to community recovery.</p>
+    </div>
+
+    <div class="process-grid">
+
+        <div class="process-card">
+            <span>01</span>
+            <h3>REPORT</h3>
+            <p>Citizens submit emergency reports with location details.</p>
+        </div>
+
+        <div class="process-card">
+            <span>02</span>
+            <h3>VERIFY</h3>
+            <p>Authorized personnel assess and validate the reports.</p>
+        </div>
+
+        <div class="process-card">
+            <span>03</span>
+            <h3>RESPOND</h3>
+            <p>Emergency teams coordinate assistance and relief.</p>
+        </div>
+
+        <div class="process-card">
+            <span>04</span>
+            <h3>RECOVER</h3>
+            <p>Support continues until the situation is resolved.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="section gray-section" id="resources">
+
+    <div class="section-heading">
+        <span class="tag">EMERGENCY SUPPORT</span>
+        <h2>Emergency Relief Resources</h2>
+        <p>Explore essential emergency support categories.</p>
+    </div>
+
+    <div class="card-grid">
+
+        <div class="resource-card">
+            <div class="card-icon">🏥</div>
+            <h3>Medical Assistance</h3>
+            <p>Medical centers, healthcare and emergency treatment.</p>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-icon">🚑</div>
+            <h3>Ambulance Services</h3>
+            <p>Emergency medical transportation information.</p>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-icon">🏠</div>
+            <h3>Relief Shelters</h3>
+            <p>Temporary accommodation and shelter information.</p>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-icon">💧</div>
+            <h3>Food and Water</h3>
+            <p>Essential food and drinking water support.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ALERTS -->
+<section class="section" id="alerts">
+
+    <div class="section-heading">
+        <span class="tag">SAFETY INFORMATION</span>
+        <h2>Active Emergency Alerts</h2>
+        <p>Sample alerts for demonstrating the alert interface.</p>
+    </div>
+
+    <div class="alert-list" id="alertList">
+
+        <div class="alert-card critical">
+            <span class="alert-label">CRITICAL WARNING</span>
+            <small>15 minutes ago · DEMO</small>
+            <h3>Flash Flood Warning</h3>
+            <p>Heavy inundation reported in low-lying areas.
+                Follow official evacuation instructions.</p>
+            <strong>Region: Eastern Coastal Sector</strong>
+        </div>
+
+        <div class="alert-card severe">
+            <span class="alert-label">SEVERE ADVISORY</span>
+            <small>1 hour ago · DEMO</small>
+            <h3>Cyclone Category 2 Watch</h3>
+            <p>Monitor official weather updates and follow
+                instructions from local authorities.</p>
+            <strong>Region: Northern District</strong>
+        </div>
+
+        <div class="alert-card warning">
+            <span class="alert-label">ALERT</span>
+            <small>3 hours ago · DEMO</small>
+            <h3>Heavy Rainfall Advisory</h3>
+            <p>Continuous rainfall expected. Exercise caution
+                and follow official advisories.</p>
+            <strong>Region: Central Metro Zone</strong>
+        </div>
+
+    </div>
+</section>
+
+<!-- VOLUNTEERS -->
+<section class="volunteer-section" id="volunteers">
+
+    <div>
+        <span class="tag">COMMUNITY PARTICIPATION</span>
+        <h2>Be Part of the Response.</h2>
+        <p>
+            Support relief operations with your skills and commitment.
+            Help your community during emergencies.
+        </p>
+    </div>
+
+    <form id="volunteerForm" class="volunteer-form">
+
+        <h3>Volunteer Registration</h3>
+
+        <input type="text" id="volunteerName"
+            placeholder="Full Name" required>
+
+        <input type="email" id="volunteerEmail"
+            placeholder="Email Address" required>
+
+        <input type="tel" id="volunteerPhone"
+            placeholder="Phone Number" required>
+
+        <select id="volunteerSkill" required>
+            <option value="">Select Your Skill</option>
+            <option>Medical Support</option>
+            <option>First Aid</option>
+            <option>Food Distribution</option>
+            <option>Communication</option>
+            <option>General Assistance</option>
+        </select>
+
+        <button type="submit" class="btn primary">
+            Register as Volunteer
+        </button>
+
+        <p id="volunteerMessage" class="message"></p>
+
+    </form>
+
+</section>
+
+<!-- ANALYTICS -->
+<section class="section">
+    <div class="section-heading">
+        <span class="tag">PERFORMANCE</span>
+        <h2>Response Progress & Incident Trends</h2>
+        <p>Illustrative operational distribution.</p>
+    </div>
+
+    <div class="analytics-card">
+        <h3>Incident Distribution</h3>
+
+        <div class="bar-item">
+            <span>Flood</span>
+            <div class="bar"><div style="width:80%"></div></div>
+        </div>
+
+        <div class="bar-item">
+            <span>Cyclone</span>
+            <div class="bar"><div style="width:65%"></div></div>
+        </div>
+
+        <div class="bar-item">
+            <span>Fire</span>
+            <div class="bar"><div style="width:45%"></div></div>
+        </div>
+
+        <div class="bar-item">
+            <span>Earthquake</span>
+            <div class="bar"><div style="width:30%"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- EMERGENCY CONTACTS -->
+<section class="emergency-section">
+    <div class="section-heading">
+        <h2>Official National Emergency Contacts (India)</h2>
+        <p>For immediate emergencies, contact official emergency services.</p>
+    </div>
+
+    <div class="emergency-grid">
+        <div>
+            <h2>112</h2>
+            <p>National Emergency Helpline</p>
+        </div>
+
+        <div>
+            <h2>108</h2>
+            <p>Emergency Medical & Ambulance</p>
+        </div>
+
+        <div>
+            <h2>101</h2>
+            <p>Fire & Rescue Service</p>
+        </div>
+
+        <div>
+            <h2>1078</h2>
+            <p>NDMA Disaster Helpline</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2>🌍 Disaster Response Hub</h2>
+    <p>Centralized disaster management and emergency coordination platform.</p>
+    <p>© 2026 Academic Project - Disaster Management System.</p>
+    <p class="footer-note">
+        Demonstration frontend only. Reports and alerts are not transmitted
+        to government emergency services.
+    </p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
